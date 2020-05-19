@@ -80,7 +80,7 @@ const DishDetail = (props) => {
           </div>
           <div className="col-12 col-md-5 m-1">
             <RenderComments comments={props.comments} />
-            <SubmitCommentForm />
+            <CommentForm />
           </div>
         </div>
       </div>
@@ -96,7 +96,7 @@ const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !val || val.length <= len;
 const minLength = (len) => (val) => val && val.length >= len;
 
-export class SubmitCommentForm extends Component {
+class CommentForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
