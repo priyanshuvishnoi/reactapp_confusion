@@ -14,6 +14,7 @@ import {
 	fetchComments,
 	fetchPromos,
 	postFeedback,
+	fetchLeaders,
 } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
@@ -39,6 +40,9 @@ const mapDispatchToProps = dispatch => ({
 	postFeedback: feedback => dispatch(postFeedback(feedback)),
 	fetchComments: () => dispatch(fetchComments()),
 	fetchPromos: () => dispatch(fetchPromos()),
+	fetchLeaders: () => {
+		dispatch(fetchLeaders());
+	},
 });
 
 class Main extends Component {
@@ -50,6 +54,7 @@ class Main extends Component {
 		this.props.fetchDishes();
 		this.props.fetchComments();
 		this.props.fetchPromos();
+		this.props.fetchLeaders();
 	}
 
 	render() {
@@ -64,7 +69,11 @@ class Main extends Component {
 					}
 					promoLoading={this.props.promotions.isLoading}
 					promoErrMess={this.props.promotions.errMess}
-					leader={this.props.leaders.filter(leader => leader.featured)[0]}
+					leader={
+						this.props.leaders.leaders.filter(leader => leader.featured)[0]
+					}
+					leadersLoading={this.props.leaders.isLoading}
+					leadersErrMess={this.props.leaders.errMess}
 				/>
 			);
 		};
